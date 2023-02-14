@@ -237,6 +237,7 @@ int main(int argc, char **argv, char **envp)
 	char	*teste;
 	char	***table_quotes;
 	cmd		*lista_comandos = NULL;
+	cmd		*aux;
 
 	teste = readline("Digite seu comando> ");
 	// Filtrar aspas 
@@ -244,11 +245,16 @@ int main(int argc, char **argv, char **envp)
 	//print_quoted_text(table_quotes);
 	printf("\n\nComando separado: \n");
 	separar_comandos(teste, &lista_comandos);
-	cmd *aux;
 	aux = lista_comandos;
 	while(aux)
 	{
 		printf("Comando: %s\n", aux->full);
+		for (int i = 0; aux->table[i]; i++)
+		{
+			for (int j = 0; j < 3; j++)
+				printf("%d - %p\t", j, aux->table[i][j]);
+			puts("");
+		}
 		aux = aux->next;
 	}
 	int i;
@@ -261,7 +267,7 @@ int main(int argc, char **argv, char **envp)
 	//printf("retorno %d\n", access("/usr/bin/ls", X_OK));/ // Busca comando
 	/* for (int i = 0; envp[i]; i++)
 		printf("%s\n", envp[i]); */
-	
+
 	//execve("/usr/bin/ls", (char *[3]){"", "-la", ""}, envp); // Executa comando echo teste | grep e
 
 	return (0);
