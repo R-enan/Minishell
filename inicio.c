@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
+#include <bsd/string.h>
 #include <string.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -27,6 +28,22 @@ void	free_table_quotes(char ***table)
 			i++;
 		}
 		free(table);
+	}
+}
+
+void	free_matrix(char **matrix)
+{
+	int	i;
+
+	if (matrix)
+	{
+		i = 0;
+		while(matrix[i])
+		{
+			free(matrix[i]);
+			i++;
+		}
+		free(matrix);
 	}
 }
 
@@ -201,6 +218,15 @@ void	separar_comandos(char *comando, cmd **lista)
 			aux = (cmd *)malloc(sizeof(cmd));
 			aux->full = ft_substr(start, 0, end - start + 1); // Mallocado numa lista
 			aux->table = filtrar_aspas(aux->full);
+			aux->only_command = start;
+			while (*aux->only_command == ' ')
+				aux->only_command++;
+			aux->argument = strchr(aux->only_command, ' ') + 1;
+			aux->only_command = ft_substr(start, 0, strchr(aux->only_command, ' ') - aux->only_command);
+			if (strchr(aux->only_command, '|'))
+				aux->argument = ft_substr(aux->argument, 0, strchr(aux->only_command, '|') - aux->argument);
+			else
+				aux->argument = ft_substr(aux->argument, 0, strlen(aux->argument));
 			aux->next = NULL;
 			ft_lstadd_back(lista, aux);
 			start = comando + 1;
@@ -219,6 +245,7 @@ void	free_list(cmd *lista)
 		while (aux)
 		{
 			free(aux->full);
+			free(aux->only_command);
 			free_table_quotes(aux->table);
 			aux = aux->next;
 		}
@@ -230,6 +257,91 @@ void	free_list(cmd *lista)
 			aux = lista;
 		}
 	}
+}
+
+char	*ft_insert_str(char const *s, int start, char c)
+{
+	int		size;
+	int		index;
+	char	*str;
+
+	size = 0;
+	s += start;
+	while (*s != c && *s)
+	{
+		size++;
+		s++;
+	}
+	str = (char *)malloc(size + 1);
+	str[size] = '\0';
+	index = 0;
+	s -= size;
+	while (index < size)
+		str[index++] = *s++;
+	return (str);
+}
+
+int	*ft_count_lines(char const *s, char c, int *positions)
+{
+	size_t	lines;
+	size_t	index;
+	size_t	s_len;
+
+	s_len = strlen(s);
+	index = 0;
+	lines = 0;
+	if (s_len)
+		positions = ((int *)malloc(((s_len / 2) + 1) * sizeof(int)));
+	else
+		positions = ((int *)malloc(2 * sizeof(int)));
+	while (s[index] == c && s[index])
+		index++;
+	if (index != s_len)
+		positions[++lines] = index;
+	while (s[index])
+	{
+		if (s[index] == c && s[index + 1] != c && s[index + 1])
+			positions[++lines] = index + 1;
+		index++;
+	}
+	positions[lines + 1] = -1;
+	positions[0] = lines;
+	return (positions);
+}
+
+char	**ft_split(char const *s, char c)
+{
+	char	**split;
+	int		*positions;
+	int		index;
+
+	split = NULL;
+	positions = NULL;
+	positions = ft_count_lines(s, c, positions);
+	split = (char **)malloc((positions[0] + 1) * sizeof(char *));
+	index = 1;
+	while (positions[index] != -1)
+	{
+		split[index - 1] = ft_insert_str(s, positions[index], c);
+		index++;
+	}
+	split[index - 1] = NULL;
+	free(positions);
+	return (split);
+}
+
+char	*ft_strjoin(char const *s1, char const *s2)
+{
+	char	*new_str;
+	size_t	new_str_size;
+
+	new_str_size = strlen(s1) + strlen(s2) + 1;
+	new_str = calloc(new_str_size, sizeof(*new_str));
+	if (!new_str)
+		return (new_str);
+	strlcat(new_str, s1, new_str_size);
+	strlcat(new_str, s2, new_str_size);
+	return (new_str);
 }
 
 int main(int argc, char **argv, char **envp)
@@ -262,14 +374,49 @@ int main(int argc, char **argv, char **envp)
 		if (!strncmp(envp[i], "PATH", 4))
 			break;
 	printf("\n\n%s\n\n", envp[i] );
+	char	**splitado = ft_split(envp[i] + 5, ':');
+	char	*aux_char;
+	aux = lista_comandos;
+	for (int linha = 0; splitado[linha]; linha++)
+	{
+		aux_char = ft_strjoin(splitado[linha], "/");
+		free(splitado[linha]);
+		splitado[linha] = aux_char;
+		aux_char = ft_strjoin(splitado[linha], aux->only_command);
+		free(splitado[linha]);
+		splitado[linha] = aux_char;
+	}
+	int linha;
+	for (linha = 0; splitado[linha]; linha++)
+	{
+		if (!access(splitado[linha], X_OK))
+		{
+			printf("Encontrou o arquivo em %s\n", splitado[linha]);
+			break;
+		}
+		else
+		{
+			printf("Não existe %s\n",splitado[linha]);
+		}
+	}
+	
 	free(teste);
+	printf ("\n\n\n\n\n\t\t\t===== EXECUTANDO O COMANDO =====\n\n\n\n");
+	fflush(stdout);
+	execve(splitado[linha], (char *[3]){"", aux->argument, 0}, envp); // Executa comando echo teste | grep e
 	free_list(lista_comandos);
+	free_matrix(splitado);
 	//printf("retorno %d\n", access("/usr/bin/ls", X_OK));/ // Busca comando
 	/* for (int i = 0; envp[i]; i++)
 		printf("%s\n", envp[i]); */
 
 	//execve("/usr/bin/ls", (char *[3]){"", "-la", ""}, envp); // Executa comando echo teste | grep e
-
+/* /usr/local/sbin/comando
+/usr/local/bin/comando
+/usr/sbin/comando
+/usr/bin/comando
+/sbin/comando
+/bin/comando */
 	return (0);
 }
 
