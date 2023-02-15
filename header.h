@@ -11,7 +11,12 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 
-void	remove_quotes(char *input);
 void	print_error(void);
+int		has_unclosed_quotes(char *input);
+void	remove_quotes(char *input);
+
+void	execute(char *input);
+void	clean_inner_spaces(char *input);
+char	*read_input(char *terminal);
 
 #endif

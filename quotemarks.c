@@ -28,6 +28,7 @@ int	has_unclosed_quotes(char *input)
 				return (1);
 			input = tmp + 1;
 		}
+		input++;
 	}
 	return (0);
 }
