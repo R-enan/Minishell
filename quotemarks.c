@@ -3,7 +3,7 @@
 
 void	print_error(void)
 {
-	printf("Man! You just have ONE job. Close your quotes!");
+	printf("Man! You just have ONE job. Close your quotes!\n");
 	exit(2);
 }
 
@@ -19,14 +19,14 @@ int	has_unclosed_quotes(char *input)
 			tmp = strchr(input + 1, '\'');
 			if (!tmp)
 				return (1);
-			input = tmp + 1;
+			input = tmp;
 		}
 		else if (*input == '"')
 		{
 			tmp = strchr(input + 1, '"');
 			if (!tmp)
 				return (1);
-			input = tmp + 1;
+			input = tmp;
 		}
 		input++;
 	}

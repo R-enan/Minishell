@@ -1,7 +1,7 @@
 
 NAME	=	minishell
 
-FILES	=	main quotemarks
+FILES	=	main quotemarks utils
 OBJS	=	$(addsuffix .o, $(FILES))
 
 HEADERS	=	header.h
