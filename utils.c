@@ -1,6 +1,45 @@
 
 #include "header.h"
 
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	char	*sub;
+	size_t	s_len;
+
+	s_len = strlen(s);
+	if (!s || !*s || !(start < s_len && len > 0))
+		return (ft_strdup(""));
+	if (len >= s_len)
+		sub = (char *)malloc((s_len - start + 1) * sizeof(char));
+	else
+		sub = (char *)malloc(len + 1);
+	s += start;
+	start = 0;
+	while (len-- > 0 && s[start])
+	{
+		sub[start] = s[start];
+		start++;
+	}
+	sub[start] = 0;
+	return (sub);
+}
+
+char	*ft_strdup(const char *s)
+{
+	size_t	size;
+	char	*dup;
+
+	if (!s)
+		return (NULL);
+	size = strlen(s);
+	dup = (char *) malloc(++size * sizeof(char));
+	if (dup == NULL)
+		return (NULL);
+	while (size--)
+		dup[size] = s[size];
+	return (dup);
+}
+
 char	*ft_strjoin(char const *s1, char const *s2)
 {
 	char	*join;

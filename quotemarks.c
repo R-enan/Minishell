@@ -62,3 +62,42 @@ void	remove_quotes(char *input)
 		}
 	}
 }
+
+int	has_pipe(char *input)
+{
+	while (input && *input)
+	{
+		if (*input == '\'' || *input == '"')
+			input = strchr(input + 1, *input);
+		else if (*input == '|')
+			return (1);
+		input++;
+	}
+	return (0);
+}
+
+t_env	*multiple_commands(char *input)
+{
+	t_env	*comandos;
+	char	*start;
+	char	*end;
+	char	*string;
+
+	comandos = NULL;
+	start = input;
+	while (input && *input)
+	{
+		if (*input == '\'' || *input == '"')
+			input = strchr(input + 1, *input);
+		input++;
+		if (*input == '|' || *input == 0)
+		{
+			end = input;
+			string = ft_substr(start, 0, end - start);
+			add_back(string, &comandos);
+			if (*end)
+				start = end + 1;
+		}
+	}
+	return (comandos);
+}
