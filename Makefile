@@ -60,7 +60,7 @@ $(NAME): $(BUILTIN_OBJ) $(REDIRECTS_OBJ) $(PIPES_OBJ) $(QUOTEMARKS_OBJ) $(EXECUT
 
 clean:
 	rm -f $(BUILTIN_OBJ) $(REDIRECTS_OBJ) $(PIPES_OBJ) 
-	rm -f $(QUOTEMARKS_OBJ) $(EXECUTE_OBJ)
+	rm -f $(QUOTEMARKS_OBJ) $(EXECUTE_OBJ) $(SRC_OBJ)
 	@make clean -C $(LIBFT_PATH) --no-print-directory
 
 fclean: clean
