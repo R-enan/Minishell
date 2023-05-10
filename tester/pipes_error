@@ -1,6 +1,0 @@
-ls | cat |
-echo oi | echo ||
-ls | echo || cat
-|   ls | cat
-ls |                        | echo oi
-|
