@@ -1,0 +1,15 @@
+export t='"'
+
+echo "Bom $t dia"
+echo "$t" '$t' $t
+echo $NO_ECZISTE
+ls $t
+
+cd $NO_ECZISTE
+cd -$NO_ECZISTE
+
+export CMD="echo oi"
+echo "$?CMD"
+
+export n=3
+exit $n

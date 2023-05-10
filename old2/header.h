@@ -4,7 +4,6 @@
 # define HEADER_H
 
 #include <errno.h>
-#include <fcntl.h>
 #include <stdio.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -13,10 +12,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <sys/wait.h>
-<<<<<<< Updated upstream
-=======
 #include "libft.h"
->>>>>>> Stashed changes
 
 struct s_env
 {
@@ -32,7 +28,7 @@ void	free_matrix(void **matrix);
 char	**split_commands(char *input);
 
 /*------------  env.c  ----------------*/
-t_env	*pointer_to_list(char **envp);
+t_env	*env_build(char **envp);
 char	**list_to_pointer(t_env *list);
 
 /*------------  execute.c  ----------------*/
@@ -59,20 +55,9 @@ int		count_pipes(char *input);
 /*------------  quotemarks.c  ----------------*/
 int		has_unclosed_quotes(char *input);
 void	remove_quotes(char *input);
-int		has_pipe(char *input);
-t_env	*multiple_commands(char *input);
 
 /*------------  spaces.c  ----------------*/
 void	clean_inner_spaces(char *input);
-<<<<<<< Updated upstream
-char	*read_input(char *terminal);
-void	add_back(char *item, t_env **list);
-
-char	**ft_split(char const *s, char c);
-char	*ft_strjoin(char const *s1, char const *s2);
-char	*ft_strdup(const char *s);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-=======
 void	restore_inner_spaces(char *input);
 
 /*------------  var.c  ----------------*/
@@ -80,13 +65,8 @@ char	*find_var(char *input);
 char	*get_var_name(char *start);
 char	*get_value_of_var(char *var, t_env *env);
 char	*expand_variables(char *input, t_env *env);
->>>>>>> Stashed changes
 
 /*------------  .c  ----------------*/
 int		is_builtin(char *command);
 void	ft_exit(char **args);
-void	ft_echo(char **args);
-void	ft_pwd(char **args);
-void	ft_cd(char **args);
-void	ft_env(char **args, t_env *env);
 #endif
