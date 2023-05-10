@@ -1,7 +1,7 @@
 
 NAME	=	minishell
 
-FILES	=	builtin commands env execute list main path pipe quotemarks spaces var
+FILES	=	
 OBJS	=	$(addsuffix .o, $(FILES))
 
 HEADERS	=	header.h
@@ -20,8 +20,7 @@ LIBFT	=	Libft/libft.a
 all: libft $(NAME)
 
 libft:
-	@make -C Libft 
-#--no-print-directory
+	@make -C Libft --no-print-directory
 
 $(NAME): $(OBJS) $(LIBFT)
 	cc $^ -g3 $(LFLAGS) $(INCLUDE) $(LIBFT) -o $@
@@ -36,9 +35,8 @@ fclean: clean
 re: fclean all
 
 v: all
-#	clear && valgrind -s --xtree-leak=yes 
 	clear && valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes \
 	--trace-children=yes --trace-children-skip=''*/bin/*,*/sbin/*'' \
-	--log-file=log --suppressions=kkkkkk ./minishell 
-# --suppressions=<arquivo> (O <arquivo> é uma lista de coisas que ele deve ignorar  ..Estude..)
+	--log-file=log --suppressions=valgrind_suppress ./minishell 
+
 .PHONY: all clean fclean re
