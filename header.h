@@ -13,10 +13,13 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 #include <sys/wait.h>
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
 #include "libft.h"
 >>>>>>> Stashed changes
+=======
+>>>>>>> 711d8bc9ba635aa730878fda7f34c98ca9727569
 
 struct s_env
 {
@@ -72,6 +75,7 @@ char	**ft_split(char const *s, char c);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *s);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
+<<<<<<< HEAD
 =======
 void	restore_inner_spaces(char *input);
 
@@ -81,6 +85,8 @@ char	*get_var_name(char *start);
 char	*get_value_of_var(char *var, t_env *env);
 char	*expand_variables(char *input, t_env *env);
 >>>>>>> Stashed changes
+=======
+>>>>>>> 711d8bc9ba635aa730878fda7f34c98ca9727569
 
 /*------------  .c  ----------------*/
 int		is_builtin(char *command);
