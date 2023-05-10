@@ -1,18 +1,38 @@
 
-NAME	=	minishell
+###### Aqui, é a separação de arquivos em pastas ######
 
-FILES	=	
-OBJS	=	$(addsuffix .o, $(FILES))
+BUILTINS_PATH	=	builtins/
+BUILTINS_SRC	=	
 
-HEADERS	=	header.h
-INCLUDE	=	-I Libft -I $(HEADERS)
+REDIRECTS_PATH	=	redirects/
+REDIRECTS_SRC	=
 
-FLAGS	=	-Wall -Werror -Wextra
-LFLAGS	=	-lreadline
+QUOTEMARKS_PATH	=	quotemarks/
+QUOTEMARKS_SRC	=	
 
-RM		=	rm -f
+###########        FIM       ###############
+############################################
 
-LIBFT	=	Libft/libft.a
+
+
+NAME			=	minishell
+
+#####
+###   Você pode usar somente FILES, enquanto não estiver separando os arquivos em pastas
+####
+
+FILES			=	
+OBJS			=	$(addsuffix .o, $(FILES))
+
+HEADERS			=	header.h
+INCLUDE			=	-I Libft -I $(HEADERS)
+
+FLAGS			=	-Wall -Werror -Wextra
+LFLAGS			=	-lreadline
+
+RM				=	rm -f
+
+LIBFT			=	Libft/libft.a
 
 %.o: %.c $(HEADERS)
 	cc -c $< $(INCLUDE) -o $@
@@ -39,4 +59,4 @@ v: all
 	--trace-children=yes --trace-children-skip=''*/bin/*,*/sbin/*'' \
 	--log-file=log --suppressions=valgrind_suppress ./minishell 
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean re v
