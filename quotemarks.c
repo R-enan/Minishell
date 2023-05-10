@@ -1,5 +1,3 @@
-<<<<<<< Updated upstream
-
 #include "header.h"
 
 void	print_error(void)
@@ -101,10 +99,4 @@ t_env	*multiple_commands(char *input)
 		}
 	}
 	return (comandos);
-<<<<<<< HEAD
 }
-=======
->>>>>>> Stashed changes
-=======
-}
->>>>>>> 711d8bc9ba635aa730878fda7f34c98ca9727569
