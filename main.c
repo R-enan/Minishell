@@ -17,6 +17,8 @@ int	minishell(t_env *env)
 			free(input);
 			continue ;
 		}
+		remove_quotes(input);
+		ft_putendl_fd(input, 1);
 		//execute_command(input, env);
 	}
 	return (0);
