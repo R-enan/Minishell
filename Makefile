@@ -55,12 +55,13 @@ all: libft $(NAME)
 libft:
 	@make -C $(LIBFT_PATH) --no-print-directory
 
-$(NAME): $(BUILTIN_OBJ) $(REDIRECTS_OBJ) $(PIPES_OBJ) $(QUOTEMARKS_OBJ) $(EXECUTE_OBJ) $(SRC_OBJ)
-	cc $(FLAGS) $(INCLUDES) $(LIBFT) $^ -o $@
+$(NAME): $(BUILTIN_OBJ) $(REDIRECTS_OBJ) $(PIPES_OBJ) \
+ $(QUOTEMARKS_OBJ) $(EXECUTE_OBJ) $(SRC_OBJ) $(ENV_OBJ)
+	cc $(FLAGS) $(INCLUDES) $^ $(LIBFT) $(READLINE_FLAGS) -o $@
 
 clean:
 	rm -f $(BUILTIN_OBJ) $(REDIRECTS_OBJ) $(PIPES_OBJ) 
-	rm -f $(QUOTEMARKS_OBJ) $(EXECUTE_OBJ) $(SRC_OBJ)
+	rm -f $(QUOTEMARKS_OBJ) $(EXECUTE_OBJ) $(SRC_OBJ) $(ENV_OBJ)
 	@make clean -C $(LIBFT_PATH) --no-print-directory
 
 fclean: clean
