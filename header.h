@@ -38,5 +38,6 @@ size_t	list_size(t_env *list);
 
 // quotemarks.c
 int	has_unclosed_quotes(char *input);
+void	remove_quotes(char *input);
 
 #endif
