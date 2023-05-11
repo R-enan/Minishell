@@ -36,4 +36,7 @@ void	add_back(t_env **list, t_env *node);
 t_env	*new_node(char *value);
 size_t	list_size(t_env *list);
 
+// quotemarks.c
+int	has_unclosed_quotes(char *input);
+
 #endif
