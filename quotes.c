@@ -1,10 +1,20 @@
 #include <stdio.h>
+#include <unistd.h>
+
+int ft_strlen(char *str)
+{
+    int i;
+    
+    i = 0;
+    while(str[i] != '\0')
+        i++;
+    return (i);
+}
 
 int  check_if_unclosed_quotes(char *str)
 {
     int quote;
     quote = 0;
-    //ver se a str tem as aspa fechadas
     while(*str && !quote)
     {
         if(*str == '"' || *str == '\'')
@@ -32,28 +42,40 @@ int  check_if_unclosed_quotes(char *str)
 void    cut_off_quotes(char *str)
 {
     int i;
-    int j;
-
     i = 0;
-    j = 0;
+
     while(str[i] != '\0')
     {
-        if (str[i] == '"' || str[i] == '\'')
+        if (str[i] == '"')
         {
-            j = i;
-            while(str[j] != '\0')
+            i++;
+            while(str[i] != '"')
             {
-                str[j] = str[j + 1];
-                j++;
+                write(1, &str[i], 1);
+                i++;
             }
+            i++;
         }
+        if (str[i] == '\'')
+        {
+            i++;
+            while(str[i] != '\'')
+            {
+                write(1, &str[i], 1);
+                i++;
+            }
+            i++;
+        }
+        write(1, &str[i], 1);
         i++;
     }
-    printf("%s\n", str);
 }
-
+#include <readline/readline.h>
 int main (int argc, char **argv)
 {
-    cut_off_quotes(argv[1]);
+    char *frase;
+    frase = "eu \"amo ch\'ocolate\" branco";
+    frase = readline("> ");
+    check_if_unclosed_quotes(frase);
     return 0;
 }
