@@ -26,3 +26,32 @@ int	has_unclosed_quotes(char *input)
 	}
 	return (0);
 }
+
+void	remove_quotes(char *input)
+{
+	char	quote;
+
+	while (*input)
+	{
+		quote = 0;
+		while (*input && !quote)
+		{
+			if (*input == '\'' || *input == '"')
+			{
+				quote = *input;
+				memmove(input, input + 1, strlen(input));
+			}
+			else
+				input++;
+		}
+		while (*input && quote)
+		{
+			if (*input == quote)
+			{
+				memmove(input, input + 1, strlen(input));
+				break ;
+			}
+			input++;
+		}
+	}
+}
