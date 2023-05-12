@@ -34,6 +34,7 @@ int	numb_fits_max_long(char *numb_begin, int sign)
 	int		index;
 	char	*big_long;
 
+	index = 0;
 	if (sign == 1)
 		big_long = "9223372036854775807";
 	else
@@ -242,7 +243,7 @@ void	ft_export(char **args, t_env **env)
 }
 
 /*-------------- unset ----------------*/
-void	ft_unset(char **args, t_env **env)
+/*void	ft_unset(char **args, t_env **env)
 {
 
-}
+}*/

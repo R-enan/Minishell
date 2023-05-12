@@ -7,7 +7,7 @@ OBJS	=	$(addsuffix .o, $(FILES))
 HEADERS	=	header.h
 INCLUDE	=	-I ../Libft -I $(HEADERS)
 
-FLAGS	=	-Wall -Werror -Wextra
+FLAGS	=	-Wall -Werror -Wextra -pg
 LFLAGS	=	-lreadline
 
 RM		=	rm -f
@@ -15,7 +15,7 @@ RM		=	rm -f
 LIBFT	=	../Libft/libft.a
 
 %.o: %.c $(HEADERS)
-	cc -c $< $(INCLUDE) -o $@
+	cc $(FLAGS) -c $< $(INCLUDE) -o $@
 
 all: libft $(NAME)
 
@@ -24,7 +24,7 @@ libft:
 #--no-print-directory
 
 $(NAME): $(OBJS) $(LIBFT)
-	cc $^ -g3 $(LFLAGS) $(INCLUDE) $(LIBFT) -o $@
+	cc $(FLAGS) $^ -g3 $(LFLAGS) $(INCLUDE) $(LIBFT) -o $@
 
 clean:
 	$(RM) $(OBJS)

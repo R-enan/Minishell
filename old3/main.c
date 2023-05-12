@@ -63,7 +63,7 @@ int	main(int argc, char **argv, char **envp)
 {
 	t_env	*list;
 
-	if (argc > 1)
+	if (argc > 1 || argv[1])
 	{
 		// Multiples arguments
 		return (127);
