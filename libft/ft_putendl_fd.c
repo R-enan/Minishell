@@ -1,27 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/23 21:43:29 by rleite-s          #+#    #+#             */
-/*   Updated: 2022/06/23 22:34:57 by rleite-s         ###   ########.fr       */
+/*   Created: 2022/05/31 23:02:37 by rleite-s          #+#    #+#             */
+/*   Updated: 2022/05/31 23:05:14 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcpy(char *dst, const char *src, size_t size)
+void	ft_putendl_fd(char *s, int fd)
 {
-	size_t	len;
-
-	len = ft_strlen(src);
-	if (size )
-	{
-		while (--size && *src)
-			*dst++ = *src++;
-		*dst = 0;
-	}
-	return (len);
+	ft_putstr_fd(s, fd);
+	write(fd, "\n", 1);
 }

@@ -6,7 +6,7 @@
 #    By:  rleite-s < rleite-s@student.42sp.org.b    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/31 23:31:33 by rleite-s          #+#    #+#              #
-#    Updated: 2023/05/12 14:55:28 by  rleite-s        ###   ########.fr        #
+#    Updated: 2023/05/12 18:00:36 by  rleite-s        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,7 +49,7 @@ $(NAME): $(Ofiles)
 		
 bonus: $(BonusO)
 
-$(BonusO):
+$(BonusO): $(BonusO:.o=.c)
 		cc $(FLAGS) -c $(@:.o=.c) -o $@
 		$(AR) $(NAME) $@ 
 

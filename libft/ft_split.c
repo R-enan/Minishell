@@ -44,7 +44,7 @@ static int	*ft_count_lines(char const *s, char c, int *positions)
 	index = 0;
 	lines = 0;
 	if (s_len)
-		positions = ((int *)malloc(((s_len) + 1) * sizeof(int)));
+		positions = ((int *)malloc(((s_len / 2) + 1) * sizeof(int)));
 	else
 		positions = ((int *)malloc(2 * sizeof(int)));
 	while (s[index] == c && s[index])
@@ -68,17 +68,10 @@ char	**ft_split(char const *s, char c)
 	int		*positions;
 	int		index;
 
-	if (!s)
-		return (NULL);
 	split = NULL;
 	positions = NULL;
 	positions = ft_count_lines(s, c, positions);
 	split = (char **)malloc((positions[0] + 1) * sizeof(char *));
-	if (!split)
-	{
-		free(positions);
-		return (NULL);
-	}
 	index = 1;
 	while (positions[index] != -1)
 	{
@@ -90,7 +83,7 @@ char	**ft_split(char const *s, char c)
 	return (split);
 }
 
-/*int	ft_count_lines(char const *s, char c)
+/* int	ft_count_lines(char const *s, char c)
 {
 	size_t	lines;
 
@@ -124,7 +117,7 @@ size_t	advance_c(const char *s, char c)
 	size_t	index;
 
 	index = 0;
-	while (s && *s && *s++ == c)
+	while (*s++ == c)
 		index++;
 	return (index);
 }
@@ -163,5 +156,4 @@ char	**ft_split(char const *s, char c)
 	}
 	split[index] = NULL;
 	return (split);
-} 
-*/
+} */

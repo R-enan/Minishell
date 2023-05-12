@@ -1,19 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_front_bonus.c                            :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By:  rleite-s < rleite-s@student.42sp.org.b    +#+  +:+       +#+        */
+/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/15 00:21:11 by rleite-s          #+#    #+#             */
-/*   Updated: 2023/05/03 17:01:18 by  rleite-s        ###   ########.fr       */
+/*   Created: 2022/05/23 21:43:29 by rleite-s          #+#    #+#             */
+/*   Updated: 2022/06/23 22:34:57 by rleite-s         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_lstadd_front(t_list **lst, t_list *new)
+size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	new->next = *lst;
-	*lst = new;
+	size_t	len;
+
+	len = ft_strlen(src);
+	if (size > 0)
+	{
+		while (--size && *src)
+			*dst++ = *src++;
+		*dst = 0;
+	}
+	return (len);
 }

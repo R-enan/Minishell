@@ -1,6 +1,7 @@
+
 #include "header.h"
 
-t_env	*pointer_to_list(char **envp)
+t_env	*env_build(char **envp)
 {
 	t_env	*env;
 	t_env	*list;

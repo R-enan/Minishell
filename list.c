@@ -12,6 +12,7 @@ void	free_list(t_env **list)
 		free(aux->var);
 		*list = aux->next;
 		free(aux);
+		aux = NULL;
 		aux = *list;
 	}
 }
