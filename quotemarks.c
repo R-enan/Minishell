@@ -27,6 +27,10 @@ int	has_unclosed_quotes(char *input)
 	return (0);
 }
 
+/**
+ * @param input Input typing by the user.
+ * @brief Removes where the more external quotemark starts and where it ends.
+ **/
 void	remove_quotes(char *input)
 {
 	char	quote;
@@ -53,5 +57,28 @@ void	remove_quotes(char *input)
 			}
 			input++;
 		}
+	}
+}
+
+/**
+ * @param input Input typing by the user.
+ * @brief Removes the sequenced quotes that don't have anything inside.
+ * @note This function assumes that the input has a correct quotemarks (open and closed).
+ **/
+void	removing_useless_quotes(char *input)
+{
+	if (!input)
+		return ;
+	while (*input)
+	{
+		if (*input == '\'' || *input == '"')
+		{
+			if (input[1] == *input)
+				ft_memmove(input, input + 2, ft_strlen(input) - 1);
+			else
+				input = ft_strchr(input + 1, *input) + 1;
+		}
+		else
+			input++;
 	}
 }

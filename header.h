@@ -37,7 +37,8 @@ t_env	*new_node(char *value);
 size_t	list_size(t_env *list);
 
 // quotemarks.c
-int	has_unclosed_quotes(char *input);
+int		has_unclosed_quotes(char *input);
 void	remove_quotes(char *input);
+void	removing_useless_quotes(char *input);
 
 #endif
