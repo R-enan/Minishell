@@ -23,6 +23,8 @@ struct s_env
 
 typedef struct s_env t_env;
 
+void	free_matrix(void **matrix);
+
 // checker.c
 int		has_input_error(char *input);
 
