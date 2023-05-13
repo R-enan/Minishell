@@ -14,5 +14,6 @@ int	has_input_error(char *input)
 		write(1, "Quoting Error\n", 14);
 		return (1);
 	}
+	// Check redirects
 	return (0);
 }
