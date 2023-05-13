@@ -47,7 +47,7 @@ READLINE_FLAGS	=	-lreadline
 LIBFT_PATH		=	libft/
 LIBFT			=	$(addprefix $(LIBFT_PATH),libft.a)
 
-%.o: %.c
+%.o: %.c header.h
 	cc -c $(FLAGS) $(INCLUDES) $< -o $@
 
 all: libft $(NAME)
