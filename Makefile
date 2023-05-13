@@ -36,7 +36,7 @@ ENV_SRC			=	env list
 ENV_OBJ			=	$(addsuffix .o, $(ENV_SRC))
 
 SRC_PATH		=
-SRC_SRC			:=	main checker splits
+SRC_SRC			:=	main checker command commands tilde_expansion comment
 SRC_OBJ			:=	$(addsuffix .o, $(SRC_SRC))
 
 INCLUDES		=	-I libft
