@@ -1,5 +1,22 @@
 #include "header.h"
 
+void	free_matrix(void **matrix)
+{
+	int	i;
+
+	if (matrix)
+	{
+		i = 0;
+		while (matrix[i])
+		{
+			free(matrix[i]);
+			matrix[i] = NULL;
+			i++;
+		}
+		free(matrix);
+	}
+}
+
 int	minishell(t_env *env)
 {
 	char	*input;
