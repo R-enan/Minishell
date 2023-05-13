@@ -24,6 +24,8 @@ struct s_env
 typedef struct s_env t_env;
 
 void	free_matrix(void **matrix);
+int		ft_isspace(char c);
+char	*find_comment(char *input);
 
 // checker.c
 int		has_input_error(char *input);
