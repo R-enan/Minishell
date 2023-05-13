@@ -22,7 +22,7 @@ int	ft_is_in_set(char c, char const *set)
  * @brief Adjusts the content of s to the format: <phrase> <delimiter> <phrase> 
  * by eliminating the excess of delimiters in the middle of s
  */
-void	ft_adjust_delimiters(char *s, char *set)
+void	ft_adjust_delimiters(char *s, const char *set)
 {
 	char	*end;
 
@@ -55,7 +55,7 @@ void	ft_adjust_delimiters(char *s, char *set)
  * @brief This function counts the words in s separated by the characters in set
  * @return The quantity of words in s; 0 if s is NULL; 1 if s is not NULL but set is
  */
-int	ft_count_words(char *s, char *set)
+int	ft_count_words(char *s, const char *set)
 {
 	int	words;
 
@@ -82,7 +82,7 @@ int	ft_count_words(char *s, char *set)
  * @brief This function inserts in splited the strings without the delimiters.
  * @return A pointer to the begining of splited double array, NULL if some allocation fails
  */
-char	**ft_insert_words(char *str, char *set, char **splited)
+char	**ft_insert_words(char *str, const char *set, char **splited)
 {
 	int	start;
 	int	end;
