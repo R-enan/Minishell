@@ -36,7 +36,7 @@ int	minishell(t_env *env)
 			continue ;
 		}
 		//remove_quotes(input);
-		removing_useless_quotes(input);
+		//removing_useless_quotes(input);
 		ft_putendl_fd(input, 1);
 		//execute_command(input, env);
 	}
