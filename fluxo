@@ -1,0 +1,36 @@
+[!OK ]	Checkar argumentos enviados com o executável
+[ OK ]	Criar lista linkada com o envp
+[!OK ]	Criar .HOME e .PWDs
+[!OK ]	Ajustar signals
+[ OK ]	Ler comando
+[ OK ]	Checar aspas
+[!OK ]	Checar pipes
+[!OK ]	Checar redirects
+[!OK ]	Ajustar redirects
+[!OK ]	Remover aspas inúteis
+[!OK ]	Expandir ~
+[!OK ]	Clean inner spaces
+[!OK ]	Splitar commands
+[!OK ]	Criar pipes
+
+Agora é comando por comando
+
+[!OK ]	Fork
+[!OK ]	Splitar por isspace(3)
+[!OK ]	Remover redirects (se atente à ordem [último é o que importa])
+[!OK ]	Ajustar fd de input
+[!OK ]	Ajustar fd de output
+[!OK ]	Checar se é builtin
+[!OK ]	Checar se comando já é diretório (./ ou /pasta/...)
+[!OK ]	Procurar PATH
+|___[!OK ]	Splitar por dois pontos
+|___[!OK ]	Join com o nome do comando
+|___[!OK ]	Access no caminho completo
+[!OK ]	Executar comando
+
+Separação de múltiplos comandos
+
+[!OK ]	Criar Fork pra cada comando
+[!OK ]	Percorrer um loop
+[!OK ]	Executar o último comando independentemente do resto estar certo ou errado
+[    ]	
