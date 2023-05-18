@@ -1,16 +1,27 @@
-# Minishell
+# Minishell Kanban
 
-```mermaid
-  graph TD;
-      Read_input --> check_unclosed_quotemarks;
-      check_unclosed_quotemarks --> |NO| clean_inner_quotemarks_spaces; 
-      check_unclosed_quotemarks --> |YES| Print_error;
-      clean_inner_quotemarks_spaces --> remove_quotemarks;
-      remove_quotemarks --> split_command;
-      split_command --> restore_inner_spaces;
-      restore_inner_spaces --> check_path;
-      check_path --> building_command_path;
-      building_command_path --> check_execute_file;
-      check_execute_file --> |YES| execve;
-      check_execute_file --> |NO| Command_not_found;
-```
+Á fazer| Fazendo | Feito
+|-|-|-
+|Verificar redirects|    Ajustar redirects   |Ler input
+|Função geral para mensagens de erro|      |Tirar comentário do comando
+|Adicionar Histórico |  |Verificar os pipes
+|Remover histórico |  |Verificar aspas
+|Signals pai |  |Clean_inner_set
+|Signals filhos |  |Restore_inner_set
+|Remover aspas |  |Ajustar delimitadores para o padrão: <texto><delimitador><texto>
+|Expandir variáveis |  |Splitar comandos (via pipe)
+|Separar redirects do comando |  |Splitar comandos (via espaço)
+|Executar redirects |  |free_matrix
+|Criar pipes |  |envp_to_list
+|Redirecionar pipes |  |list_to_envp
+|Heredoc |  |free_list
+|Executar comando |  |
+|Verificação de erros |  |
+|Tester |  |
+|Separar arquivos em pastas |  |
+| |  |
+| |  |
+| |  |
+| |  |
+| |  |
+|flags e norminette |  |
