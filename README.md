@@ -3,13 +3,13 @@
 Á fazer| Fazendo | Feito
 |-|-|-
 ||    Ajustar redirects   |Ler input
-||      |Tirar comentário do comando
-|Adicionar Histórico |  |Verificar os pipes
+||  Remover aspas    |Tirar comentário do comando
+|Adicionar Histórico | Expandir variáveis |Verificar os pipes
 |Remover histórico |  |Verificar aspas
 |Signals pai |  |Clean_inner_set
 |Signals filhos |  |Restore_inner_set
-|Remover aspas |  |Ajustar delimitadores para o padrão: <texto><delimitador><texto>
-|Expandir variáveis |  |Splitar comandos (via pipe)
+| |  |Ajustar delimitadores para o padrão: <texto><delimitador><texto>
+| |  |Splitar comandos (via pipe)
 |Separar redirects do comando |  |Splitar comandos (via espaço)
 |Executar redirects |  |free_matrix
 |Criar pipes |  |envp_to_list
