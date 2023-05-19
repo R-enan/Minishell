@@ -2,8 +2,8 @@
 
 Á fazer| Fazendo | Feito
 |-|-|-
-|Verificar redirects|    Ajustar redirects   |Ler input
-|Função geral para mensagens de erro|      |Tirar comentário do comando
+||    Ajustar redirects   |Ler input
+||      |Tirar comentário do comando
 |Adicionar Histórico |  |Verificar os pipes
 |Remover histórico |  |Verificar aspas
 |Signals pai |  |Clean_inner_set
@@ -15,8 +15,8 @@
 |Criar pipes |  |envp_to_list
 |Redirecionar pipes |  |list_to_envp
 |Heredoc |  |free_list
-|Executar comando |  |
-|Verificação de erros |  |
+|Executar comando |  |Verificar redirects
+|Verificação de erros |  |Função geral para mensagens de erro
 |Tester |  |
 |Separar arquivos em pastas |  |
 | |  |
