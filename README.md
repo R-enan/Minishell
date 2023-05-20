@@ -3,8 +3,8 @@
 Á fazer| Fazendo | Feito
 |-|-|-
 ||    Ajustar redirects   |Ler input
-||  Remover aspas    |Tirar comentário do comando
-|Adicionar Histórico | Expandir variáveis |Verificar os pipes
+||      |Tirar comentário do comando
+|Adicionar Histórico ||Verificar os pipes
 |Remover histórico |  |Verificar aspas
 |Signals pai |  |Clean_inner_set
 |Signals filhos |  |Restore_inner_set
@@ -17,8 +17,8 @@
 |Heredoc |  |free_list
 |Executar comando |  |Verificar redirects
 |Verificação de erros |  |Função geral para mensagens de erro
-|Tester |  |
-|Separar arquivos em pastas |  |
+|Tester |  | Remover aspas
+|Separar arquivos em pastas |  | Expandir variáveis 
 | |  |
 | |  |
 | |  |
