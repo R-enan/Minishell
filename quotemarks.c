@@ -60,25 +60,33 @@ void	remove_quotes(char *input)
 	}
 }
 
-/**
- * @param input Input typing by the user.
- * @brief Removes the sequenced quotes that don't have anything inside.
- * @note This function assumes that the input has a correct quotemarks (open and closed).
- **/
-void	removing_useless_quotes(char *input)
+/*char	*remove_quotes_and_expand_vars(char *input)
 {
-	if (!input)
-		return ;
-	while (*input)
+	char	*start;
+	char	*end;
+	char	quote;
+
+	start = input;
+	end = input;
+	quote = 0;
+	while (*end)
 	{
-		if (*input == '\'' || *input == '"')
+		if (*end == '\'' || *end == '"')
 		{
-			if (input[1] == *input)
-				ft_memmove(input, input + 2, ft_strlen(input) - 1);
-			else
-				input = ft_strchr(input + 1, *input) + 1;
+			quote = *end;
+			start = end;
+			ft_memmove(end, end + 1, ft_strlen(end));
+			while (*++end != quote)
+				end++;
+			ft_memmove(end, end + 1, ft_strlen(end));
 		}
-		else
-			input++;
+		if (quote == '"' || *end == '$')
+		{
+			// expand vars from 'start' to 'end'
+
+		}
+		end++;
 	}
+	return (remove_quotes_and_expand_vars()); // Chamada recursiva
 }
+*/

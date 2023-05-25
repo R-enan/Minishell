@@ -40,10 +40,12 @@ void	ft_adjust_delimiters(char *s, const char *set)
 			end = s + 1;
 			while (ft_is_in_set(*end, set))
 				end++;
+			if (!*end)
+				*s = 0;
+			else
+				*s = ' ';
 			if (s + 1 != end)
 				ft_memmove(s + 1, end, ft_strlen(end) + 1);
-			else if (!*end)
-				*s-- = 0;
 		}
 		s++;
 	}
@@ -127,7 +129,7 @@ char	**ft_split_set(const char *s, const char *set)
 		return (NULL);
 	ft_adjust_delimiters(copy, set);
 	words = ft_count_words(copy, set);
-	splited = (char **) malloc((words + 1) * sizeof(char *));
+	splited = (char **) ft_calloc((words + 1), sizeof(char *));
 	if (!splited)
 		return (NULL);
 	splited = ft_insert_words(copy, set, splited);

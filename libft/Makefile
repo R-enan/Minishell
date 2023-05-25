@@ -6,7 +6,7 @@
 #    By:  rleite-s < rleite-s@student.42sp.org.b    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/31 23:31:33 by rleite-s          #+#    #+#              #
-#    Updated: 2023/05/12 18:00:36 by  rleite-s        ###   ########.fr        #
+#    Updated: 2023/05/24 18:19:43 by  rleite-s        ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,17 +41,13 @@ RM		= 	rm -f
 
 %.o: %.c
 		cc $(FLAGS) -c $< -o $@
+		$(AR) $(NAME) $@
 
 all: $(NAME)
 
 $(NAME): $(Ofiles) 
-		$(AR) $@ $^
 		
-bonus: $(BonusO)
-
-$(BonusO): $(BonusO:.o=.c)
-		cc $(FLAGS) -c $(@:.o=.c) -o $@
-		$(AR) $(NAME) $@ 
+bonus: $(BonusO) 
 
 #bonus:
 #		@make Ofiles="$(BonusO)" --no-print-directory
@@ -74,4 +70,4 @@ re: fclean all
 exec: re bonus
 		gcc $(FLAGS) main.c $(NAME) -lbsd && ./a.out | cat -e > resp
 
-.PHONY: all clean fclean re exec bonus #$(BonusO)
+.PHONY: all clean fclean re exec bonus

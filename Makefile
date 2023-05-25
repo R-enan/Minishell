@@ -12,7 +12,7 @@ BUILTIN_SRC		=
 BUILTIN_OBJ		=	$(addsuffix .o, $(BUILTIN_SRC))
 
 REDIRECTS_PATH	=	
-REDIRECTS_SRC	=	
+REDIRECTS_SRC	=	redirects
 REDIRECTS_OBJ	=	$(addsuffix .o, $(REDIRECTS_SRC))
 
 QUOTEMARKS_PATH	=	
@@ -20,11 +20,11 @@ QUOTEMARKS_SRC	=	quotemarks
 QUOTEMARKS_OBJ	=	$(addsuffix .o, $(QUOTEMARKS_SRC))
 
 PIPES_PATH		=	
-PIPES_SRC		=	
+PIPES_SRC		=	pipe
 PIPES_OBJ		=	$(addsuffix .o, $(PIPES_SRC))
 
 SPACES_PATH		=	
-SPACES_SRC		=	
+SPACES_SRC		=	spaces expansion
 SPACES_OBJ		=	$(addsuffix .o, $(SPACES_SRC))
 
 EXECUTE_PATH	=
@@ -36,12 +36,12 @@ ENV_SRC			=	env list
 ENV_OBJ			=	$(addsuffix .o, $(ENV_SRC))
 
 SRC_PATH		=
-SRC_SRC			:=	main checker command commands tilde_expansion comment
+SRC_SRC			:=	main checker command commands tilde_expansion comment search adjust_redirects
 SRC_OBJ			:=	$(addsuffix .o, $(SRC_SRC))
 
 INCLUDES		=	-I libft
 
-FLAGS			=	-Wall -Werror -Wextra 
+FLAGS			=	-Wall -Werror -Wextra -g
 READLINE_FLAGS	=	-lreadline
 
 LIBFT_PATH		=	libft/
@@ -56,12 +56,14 @@ libft:
 	@make -C $(LIBFT_PATH) --no-print-directory
 
 $(NAME): $(BUILTIN_OBJ) $(REDIRECTS_OBJ) $(PIPES_OBJ) \
- $(QUOTEMARKS_OBJ) $(EXECUTE_OBJ) $(SRC_OBJ) $(ENV_OBJ)
+ $(QUOTEMARKS_OBJ) $(EXECUTE_OBJ) $(SRC_OBJ) $(ENV_OBJ) \
+ $(SPACES_OBJ)
 	cc $(FLAGS) $(INCLUDES) $^ $(LIBFT) $(READLINE_FLAGS) -o $@
 
 clean:
 	rm -f $(BUILTIN_OBJ) $(REDIRECTS_OBJ) $(PIPES_OBJ) 
 	rm -f $(QUOTEMARKS_OBJ) $(EXECUTE_OBJ) $(SRC_OBJ) $(ENV_OBJ)
+	rm -f $(SPACES_OBJ)
 	@make clean -C $(LIBFT_PATH) --no-print-directory
 
 fclean: clean

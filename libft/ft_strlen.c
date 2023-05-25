@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By:  rleite-s < rleite-s@student.42sp.org.b    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/23 17:25:35 by rleite-s          #+#    #+#             */
-/*   Updated: 2022/07/24 17:03:03 by rleite-s         ###   ########.fr       */
+/*   Updated: 2023/05/24 19:20:38 by  rleite-s        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ size_t	ft_strlen(const char *s)
 	size_t	len;
 
 	len = 0;
-	while (s && s[len++])
-		;
-	return (len - 1);
+	while (s && s[len])
+		len++;
+	return (len);
 }
