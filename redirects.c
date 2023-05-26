@@ -61,11 +61,11 @@ t_env	*get_redirects(char **command, char redirect)
 			add_back(&inputs, aux);
 			temp = command + 1;
 			free(*command);
-			*command = NULL;
-			command = temp;
+			//*command = NULL;
+			*command = *temp;
 			while (*temp)
 			{
-				temp = temp + 1;
+				*temp = *(temp + 1);
 				temp++;
 			}
 		}
@@ -121,11 +121,7 @@ void	set_output(t_redirects *redirects)
 		if (*aux->var == '>' && aux->var[1] == '>')
 			fd = open(aux->var + 3, O_CREAT | O_APPEND | O_WRONLY, 0644);
 		else
-		{
 			fd = open(aux->var + 2, O_CREAT | O_TRUNC | O_WRONLY, 0644);
-			ft_putstr_fd("Entrei aqui. FD = ", 1);
-			ft_putnbr_fd(fd, 1);
-		}
 		if (fd < 0)
 		{
 			perror(aux->var + 2 + (aux->var[1] == '>'));

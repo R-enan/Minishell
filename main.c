@@ -22,7 +22,7 @@ int	minishell(t_env *env)
 	char	*input;
 	char	*cwd;
 
-	while (env)
+	while (1)
 	{
 		//input = readline("Digite o comando> ");
 		input = getcwd(NULL, 0); // Caminho maior que 4096
@@ -70,6 +70,14 @@ int	minishell(t_env *env)
 		
 		redir_data.inputs_redirects = get_redirects(coman, '<');
 		redir_data.outputs_redirects = get_redirects(coman, '>');
+		i = 0;
+		ft_putendl_fd("=========Comando após passar no bangzinho ==========", 1);
+
+		while (coman && coman[i])
+		{
+			ft_putendl_fd(coman[i++], 1);
+			//i++;
+		}
 		set_input(&redir_data);
 		if (redir_data.fd_input < 0)
 			return (-1);
@@ -78,23 +86,39 @@ int	minishell(t_env *env)
 			return (-1);
 		// dup2
 		// fork
-		ft_putstr_fd("Esse é o output: ", 1);
 		int pid = fork();
 		if (pid == 0)
 		{
-			int bkp_input = dup(0);
-			int bkp_output = dup(1);
-			dup2(redir_data.fd_input, 0);
-			dup2(redir_data.fd_output, 1);
+			int bkp_input = -1;
+			int bkp_output = -1;
+			if (redir_data.fd_input != 0)
+			{
+				bkp_input = dup(0);
+				dup2(redir_data.fd_input, 0);
+			}
+			if (redir_data.fd_output != 1)
+			{
+				bkp_output = dup(1);
+				dup2(redir_data.fd_output, 1);
+			}
+			char **temp = list_to_pointer(env);
+			execve(ft_strdup(coman[0]), coman, temp);
 			// |--Check if command is a directory, or the full path of binary
 			// |--executar comando
 			// exit // case error
 			write(1, "Essa é a saída padrão do filho!\n", 35);
-			dup2(bkp_input, 0);
-			dup2(bkp_output, 1);
-			close(bkp_input);
-			close(bkp_output);
-			close(redir_data.fd_output);
+			if (bkp_input > 0)
+			{
+				dup2(bkp_input, 0);
+				close(bkp_input);
+			}
+			if (bkp_output > 0)
+			{
+				dup2(bkp_output, 1);
+				close(bkp_output);
+			}
+			if (redir_data.fd_output != 1)
+				close(redir_data.fd_output);
 			free(input);
 			free_matrix((void **)coman);
 			free_list(&redir_data.outputs_redirects);
