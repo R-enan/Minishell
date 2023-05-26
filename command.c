@@ -133,6 +133,7 @@ char	**ft_split_set(const char *s, const char *set)
 	if (!splited)
 		return (NULL);
 	splited = ft_insert_words(copy, set, splited);
+	free(copy);
 	if (!splited)
 		return (NULL);
 	return (splited);

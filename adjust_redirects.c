@@ -79,7 +79,6 @@ char    *redirect(char *str)
 			simbol = str[i];
 			if (i > 0 && ((str[i - 1] != ' ' && str[i + 1] == simbol) || (str[i - 1] != simbol && str[i] == simbol)))
 			{
-				ft_putendl_fd("Entrei", 1);
 				newstr[j] = ' ';
 				j++;
 				newstr[j] = simbol;
@@ -100,6 +99,7 @@ char    *redirect(char *str)
 			i++;
 		}
 	}
+	free(str);
 	return (newstr);
 }
 

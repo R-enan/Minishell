@@ -95,11 +95,14 @@ int	minishell(t_env *env)
 			close(bkp_input);
 			close(bkp_output);
 			close(redir_data.fd_output);
+			free(input);
+			free_matrix((void **)coman);
 			exit(0);
 		}
 		else
 		{
 			//ft_putendl_fd(input, 1);
+			free_list(&redir_data.outputs_redirects);
 			close(redir_data.fd_output);
 			free(input);
 			free_matrix((void **)coman);

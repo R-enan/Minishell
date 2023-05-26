@@ -59,8 +59,10 @@ t_env	*get_redirects(char **command, char redirect)
 				return (NULL);
 			}
 			add_back(&inputs, aux);
+			temp = command + 1;
 			free(*command);
-			temp = command;
+			*command = NULL;
+			command = temp;
 			while (*temp)
 			{
 				temp = temp + 1;
