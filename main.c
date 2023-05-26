@@ -97,6 +97,8 @@ int	minishell(t_env *env)
 			close(redir_data.fd_output);
 			free(input);
 			free_matrix((void **)coman);
+			free_list(&redir_data.outputs_redirects);
+			free_list(&env);
 			exit(0);
 		}
 		else
