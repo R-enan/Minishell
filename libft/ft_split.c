@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rleite-s <rleite-s@student.42sp.org.br>    +#+  +:+       +#+        */
+/*   By:  rleite-s < rleite-s@student.42sp.org.b    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 21:11:22 by rleite-s          #+#    #+#             */
-/*   Updated: 2022/06/14 23:55:57 by rleite-s         ###   ########.fr       */
+/*   Updated: 2023/05/29 15:40:52 by  rleite-s        ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_insert_str(char const *s, int start, char c)
+/*static char	*ft_insert_str(char const *s, int start, char c)
 {
 	int		size;
 	int		index;
@@ -81,79 +81,51 @@ char	**ft_split(char const *s, char c)
 	split[index - 1] = NULL;
 	free(positions);
 	return (split);
-}
+}*/
 
-/* int	ft_count_lines(char const *s, char c)
+int	count_words(const char *s, char c)
 {
-	size_t	lines;
+	int	words;
 
-	lines = 1;
-	while (*s == c)
-		s++;
+	words = 0;
 	while (*s)
 	{
-		if (*s == c && *(s + 1) != c && *(s + 1))
-			lines++;
-		s++;
+		while (*s == c && *s)
+			s++;
+		if (!*s)
+			break;
+		words++;
+		while (*s != c && *s)
+			s++;
 	}
-	return (lines);
+	return (words);
 }
 
-size_t	ft_get_next_ocurrence(const char *s, char c)
+char	**ft_split(const char *s, char c)
 {
-	size_t	index;
-
-	index = 0;
-	while (*s && *s != c)
-	{
-		index++;
-		s++;
-	}
-	return (index);
-}
-
-size_t	advance_c(const char *s, char c)
-{
-	size_t	index;
-
-	index = 0;
-	while (*s++ == c)
-		index++;
-	return (index);
-}
-
-char	*ft_cut_str(char const *s, char c)
-{
-	size_t	index;
-	char	*split;
-
-	index = ft_get_next_ocurrence(s, c) + 1;
-	split = (char *)malloc(index-- * sizeof(char));
-	split[index] = '\0';
-	while (index--)
-		split[index] = s[index];
-	return (split);
-}
-
-char	**ft_split(char const *s, char c)
-{
-	char	**split;
-	size_t	lines;
-	size_t	index;
+	char	**splited;
+	char	*end;
+	int		words;
 
 	if (!s)
 		return (NULL);
-	index = 0;
-	lines = ft_count_lines(s, c);
-	split = (char **)malloc((lines + 1) * sizeof(char *));
-	s += advance_c(s, c);
-	while (index < lines)
+	words = count_words(s, c);
+	splited = (char **)ft_calloc((words + 1), sizeof(char *));
+	if (!splited)
+		return (NULL);
+	while (*s)
 	{
-		split[index] = ft_cut_str(s, c);
-		s += ft_strlen(split[index]) + 1;
-		s += advance_c(s, c);
-		index++;
+		while (*s == c && *s)
+			s++;
+		if (!*s)
+			break;
+		end = (char *)s;
+		while (*end != c && *end)
+			end++;
+		splited[words] = ft_substr(s, 0, end - s);
+		words++;
+		while (*s != c && *s)
+			s++;
 	}
-	split[index] = NULL;
-	return (split);
-} */
+	return (splited);
+}

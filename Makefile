@@ -72,7 +72,7 @@ fclean: clean
 re: fclean all
 
 v: all
-	clear && valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes --trace-children=yes \
+	clear && valgrind -s --leak-check=full --show-leak-kinds=all --track-origins=yes \
 	--trace-children=yes --trace-children-skip=''*/bin/*,*/sbin/*'' \
 	--suppressions=valgrind_suppressions ./minishell
 

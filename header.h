@@ -3,6 +3,7 @@
 #ifndef HEADER_H
 # define HEADER_H
 
+# include <err.h>
 # include <errno.h>
 # include <fcntl.h>
 # include <stdio.h>
@@ -75,7 +76,8 @@ t_env	*pointer_to_list(char **envp);
 char	**list_to_pointer(t_env *list);
 
 // list.c
-void	free_list(t_env **list);
+void	free_parent_list(t_env **list);
+void	free_child_list(t_env **list);
 void	add_back(t_env **list, t_env *node);
 t_env	*new_node(char *value);
 size_t	list_size(t_env *list);

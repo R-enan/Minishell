@@ -1,6 +1,6 @@
 #include "header.h"
 
-void	free_list(t_env **list)
+void	free_parent_list(t_env **list)
 {
 	t_env	*aux;
 
@@ -10,6 +10,22 @@ void	free_list(t_env **list)
 	while (aux)
 	{
 		free(aux->var);
+		*list = aux->next;
+		free(aux);
+		aux = NULL;
+		aux = *list;
+	}
+}
+
+void	free_child_list(t_env **list)
+{
+	t_env	*aux;
+
+	if (list == NULL)
+		return ;
+	aux = *list;
+	while (aux)
+	{
 		*list = aux->next;
 		free(aux);
 		aux = NULL;

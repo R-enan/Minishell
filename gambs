@@ -1,0 +1,16 @@
+#include <stdlib.h>
+
+int	main()
+{
+	char **palavras = split("      Marcela   esta   é   a string                ", ' ')
+	"Marcela\0"
+	"esta\0"
+	"é\0"
+	"a\0"
+	"string\0"
+	NULL
+	qtd_q_quero = quantas_palavras_tem_na_string(s);
+	matrix_splitted = malloc((qtd_q_quero + 1) * sizeof(char *));
+	
+	return (0);
+}

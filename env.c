@@ -14,7 +14,7 @@ t_env	*pointer_to_list(char **envp)
 		env = new_node(*envp);
 		if (env == NULL)
 		{
-			free_list(&list);
+			free_parent_list(&list);
 			return (NULL);
 		}
 		add_back(&list, env);

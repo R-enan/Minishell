@@ -55,7 +55,7 @@ t_env	*get_redirects(char **command, char redirect)
 			aux = new_node(*command);
 			if (!aux)
 			{
-				free_list(&inputs);
+				free_parent_list(&inputs);
 				return (NULL);
 			}
 			add_back(&inputs, aux);
@@ -104,7 +104,7 @@ void	set_input(t_redirects *redirects)
 		close(fd);
 		aux = aux->next;
 	}
-	free_list(&redirects->inputs_redirects);
+	free_parent_list(&redirects->inputs_redirects);
 	redirects->fd_input = fd;
 }
 
@@ -132,7 +132,7 @@ void	set_output(t_redirects *redirects)
 		close(fd);
 		aux = aux->next;
 	}
-	free_list(&redirects->outputs_redirects);
+	free_parent_list(&redirects->outputs_redirects);
 	redirects->fd_output = fd;
 }
 
